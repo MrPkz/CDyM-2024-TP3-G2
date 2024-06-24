@@ -14,7 +14,7 @@
 
 
 
-void inicializar_sensor(){
+static void inicializar_sensor(){
 	DDRC |= (1 << PINC0);
 	PORTC &= ~(1 << PINC0);
 	_delay_ms(20);

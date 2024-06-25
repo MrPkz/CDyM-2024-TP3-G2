@@ -18,9 +18,6 @@
 #include "dht11.h"
 #include "rtc.h"
 #include "serialPort.h"
-#define F_CPU 16000000UL
 #define BR9600 (0x67)	// 0x67=103 configura BAUDRATE=9600 a 16MHz
-
-
 
 #endif /* MAIN_H_ */

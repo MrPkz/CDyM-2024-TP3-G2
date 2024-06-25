@@ -11,6 +11,4 @@
 
 uint8_t leer(uint8_t* res);
 
-
-
 #endif /* DHT11_H_ */

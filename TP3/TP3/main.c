@@ -5,6 +5,7 @@
  * Author : Barcala
  */ 
 
+#define F_CPU 16000000UL
 #include "main.h"
 
 volatile uint8_t RX_Buffer=0;		// Variable que se modificará cuando se atienda la interrupción
@@ -42,6 +43,7 @@ static void obtenerFechaHoraCompilacion(rtc_t *hora){
 	// Descomponer la hora
 	sscanf(time, "%hhu:%hhu:%hhu", &(hora->hour), &(hora->min), &(hora->sec));
 }
+
 
 ISR(USART_RX_vect){
 	RX_Buffer = UDR0; //la lectura del UDR borra flag RXC
@@ -86,10 +88,9 @@ int main(void){
 			strcat(msg, cadenaT);
 			strcat(msg, "°C HUM: ");
 			strcat(msg, cadenaH);
-			strcat(msg, fechayhora);					//despues se va a tener que poner la fecha y hora con el otro periferico q usa i2c. Ya lo debería hacer
+			strcat(msg, fechayhora);					
 			SerialPort_Send_String(msg);				//mando el mensaje a la terminal
-		}
-		else if(!flagFin){
+		}else if(!flagFin){
 			SerialPort_Send_String("Error en la transmision. (Fallo el Checksum)\r\n");
 		}
 		_delay_ms(2000);
